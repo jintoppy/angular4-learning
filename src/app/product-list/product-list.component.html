@@ -1,0 +1,29 @@
+<div>
+  <h2>Product List</h2>
+  <app-product-display
+    [product]="selectedProduct"
+  ></app-product-display>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products">
+        <app-product-list-item                            
+            [product]="p"
+            (onSelect)="onProductSelect($event)"
+            >
+        </app-product-list-item>
+
+
+      </tr>
+    </tbody>
+  </table>
+
+
+
+</div>

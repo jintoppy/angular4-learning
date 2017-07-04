@@ -1,0 +1,10 @@
+<div>
+  <div *ngIf="product">
+  <h2>Product Details</h2>
+  <h3>{{product.title}}</h3>
+  <p>{{product.price}}</p>
+  </div>
+  <div *ngIf="!product">
+      No Product Selected
+  </div>
+</div>

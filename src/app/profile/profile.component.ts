@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  myname: string = "Trial";
-  onKeyUp(){
-    if(this.myname === ""){
-      this.myname = "Trial";
+  @ViewChild('f')
+  myForm: NgForm;
+  onSubmit(form){
+    if(form.valid){
+      console.log(form.value);
+    }
+    else{
+      alert('not valid');
     }
   }
+
+  onSetValue(){
+    this.myForm.form.setValue({
+      username: 'custom',
+      password: 'custom'
+    });
+
+    // this.myForm.form.patchValue({
+    //   username: 'custom'
+    // });
+
+  }
+
 }

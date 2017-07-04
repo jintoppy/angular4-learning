@@ -1,0 +1,63 @@
+<div>
+  <h2>User Profile Entry</h2>
+
+    {{ 1499167292016 | date }}  
+    {{ 10 | currency:'INR' }}
+    {{ myTitle | uppercase }}
+    {{ myTitle | lowercase }}
+    {{myTitle}}
+  <div *ngIf="myForm.get('basicInfo').get('name').errors">
+      <span *ngIf="myForm.get('basicInfo').get('name').errors.required">
+          Name field required
+      </span>
+      <span *ngIf="myForm.get('basicInfo').get('name').errors.minlength">
+        minlength is 3        
+      </span>
+      <span *ngIf="myForm.get('basicInfo').get('name').errors.inValidStarting">
+          Name should not start with a
+      </span>
+      
+  </div>
+  <form [formGroup]="myForm">
+    <fieldset formGroupName="basicInfo">
+      <legend>Basic Info</legend>
+        <div>
+        Name: <input 
+          name="name"
+          formControlName="name"
+          type="text"> 
+      </div>
+      <div>
+        Age: <input 
+          name="age"
+          formControlName="age"
+          type="number"> 
+      </div>
+    </fieldset>
+      <fieldset formGroupName="contactInfo">
+          <legend>Contact Info</legend>
+        <div>
+        Address: <textarea  name="address" formControlName="address"> 
+              </textarea>
+        </div>
+      <div>
+        Email: <input 
+          name="email"
+           formControlName="email"
+          type="email"> 
+        </div>
+      </fieldset>
+        <div *ngIf="myForm.get('contactInfo').get('email').errors">
+          <span *ngIf="myForm.get('contactInfo').get('email').errors.inValidStarting">
+              Email should not start with a
+          </span>
+          </div>
+      <div>
+        <input 
+        type="submit"                 
+        value="Add Details">
+      </div>
+      
+  </form>
+  
+</div>

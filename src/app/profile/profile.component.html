@@ -1,9 +1,59 @@
 <div>
-
-  <input 
-    type="text"
-    [(ngModel)]="myname"
-    (keyup)="onKeyUp()">
-
-    {{myname}}
+  <h2>User Profile Entry</h2>
+  <button
+    (click)="onSetValue()"
+  >Set Value</button>
+  {{f.value | json}}
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <fieldset ngModelGroup="basicInfo">
+      <legend>Basic Info</legend>
+        <div>
+        Name: <input 
+          ngModel
+          name="name"
+          #myname="ngModel"
+          required
+          minlength="3"
+          type="text"> 
+          <div *ngIf="myname.errors">
+              <span *ngIf="myname.errors.required">
+                Name required
+              </span>
+              <span *ngIf="myname.errors.minlength">
+                  MinLength is 3            
+              </span>
+          </div>
+          
+      </div>
+      <div>
+        Age: <input 
+          ngModel
+          name="age"
+          required
+          type="number"> 
+      </div>
+    </fieldset>
+      <fieldset ngModelGroup="contactInfo">
+          <legend>Contact Info</legend>
+        <div>
+        Address: <textarea  ngModel name="address" > 
+              </textarea>
+        </div>
+      <div>
+        Email: <input 
+          ngModel
+          name="email"
+          required
+          type="email"> 
+        </div>
+      </fieldset>
+      
+      <div>
+        <input 
+        type="submit"                 
+        value="Add Details">
+      </div>
+      
+  </form>
+  
 </div>

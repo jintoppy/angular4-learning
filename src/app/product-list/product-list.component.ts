@@ -13,7 +13,10 @@ export class ProductListComponent implements OnInit {
   constructor(private service: ProductService) { }
 
   ngOnInit() {
-    this.products = this.service.getProducts();
+    this.service.getProducts()
+      .subscribe((res: Product[]) => {
+        this.products = res;
+      });
   }
 
   onProductSelect(p){

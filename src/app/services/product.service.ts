@@ -1,14 +1,23 @@
+import {Injectable} from '@angular/core';
 import {Product} from '../models/Product';
+import {Response} from '@angular/http';
+import {Http} from '@angular/http';
+import 'rxjs/Rx';
+
+@Injectable()
 export class ProductService{
-    products: Product[] = [
-      new Product(1,'Oculus Rift',45000),
-      new Product(2,'HTC Vive',75000)
-    ]
-    constructor(){
+    constructor(private http: Http){
 
     }
 
     getProducts(){
-        return this.products;
+        return this.http
+                    .get('http://www.mocky.io/v2/595c9603110000d70009887b')
+                    .map((res: Response) => {
+                        return res.json();
+                    });
+
+                    
+                    
     }
 }

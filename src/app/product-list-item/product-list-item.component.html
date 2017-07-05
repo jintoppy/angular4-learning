@@ -6,6 +6,6 @@
     {{product.price}}
   </td>
   <td>
-    <button (click)="onBtnClick(product)">View</button>
+    <a [routerLink]="['/productdetails', product.id]">View</a>
   </td>
 </tr>

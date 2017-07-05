@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from '../models/Product';
+import {ProductService} from '../services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,21 +10,10 @@ import {Product} from '../models/Product';
 export class ProductListComponent implements OnInit {
   products: Array<Product> = [];
   selectedProduct: Product;
-  constructor() { }
+  constructor(private service: ProductService) { }
 
   ngOnInit() {
-    this.products = [
-      {
-        id: 1,
-        title: 'Oculus Rift',
-        price: 45000
-      },
-      {
-        id: 2,
-        title: 'HTC Vive',
-        price: 75000
-      }
-    ]
+    this.products = this.service.getProducts();
   }
 
   onProductSelect(p){
